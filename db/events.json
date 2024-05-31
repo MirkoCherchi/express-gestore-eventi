@@ -1,0 +1,21 @@
+[
+    {
+      "id": 1,
+      "title": "Concerto in Piazza",
+      "description": "Concerto di musica classica all'aperto",
+      "date": "2024-06-15"
+    },
+    {
+      "id": 2,
+      "title": "Mostra d'Arte Moderna",
+      "description": "Esposizione di opere d'arte contemporanea",
+      "date": "2024-07-20"
+    },
+    {
+      "id": 3,
+      "title": "Corso di Cucina",
+      "description": "Lezioni pratiche per imparare a cucinare piatti gourmet",
+      "date": "2024-08-10"
+    }
+  ]
+  

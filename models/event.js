@@ -3,7 +3,7 @@ const path = require("path");
 
 const filePath = path.join(__dirname, "../db/events.json");
 
-class Event {
+class EventModel {
   constructor(id, title, description, date, maxSeats) {
     this.id = id;
     this.title = title;
@@ -37,6 +37,20 @@ class Event {
       });
     });
   }
+
+  static findById(id) {
+    return new Promise((resolve, reject) => {
+      fs.readFile(filePath, "utf8", (err, data) => {
+        if (err) {
+          reject(err);
+        } else {
+          const events = JSON.parse(data);
+          const event = events.find((event) => event.id === parseInt(id));
+          resolve(event);
+        }
+      });
+    });
+  }
 }
 
-module.exports = Event;
+module.exports = EventModel;
