@@ -12,10 +12,12 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.19.2",
+    "express-validator": "^7.1.0",
     "nodemon": "^3.1.2"
   },
   "nodemonConfig": {
-    "ignore": ["./db/events.json"]
+    "ignore": [
+      "./db/events.json"
+    ]
   }
-  
 }

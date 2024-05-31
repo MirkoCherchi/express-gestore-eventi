@@ -29,8 +29,24 @@ const show = async (req, res) => {
   }
 };
 
-const store = (req, res) => {
-  res.send("Sono lo Store");
+const store = async (req, res) => {
+  try {
+    const { title, description, date, maxSeats } = req.body;
+
+    const newEvent = new EventModel(null, title, description, date, maxSeats);
+
+    const events = await EventModel.allStaticEvents();
+
+    events.push(newEvent);
+
+    await EventModel.saveEvents(events);
+
+    res
+      .status(201)
+      .json({ message: "Event created successfully", event: newEvent });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
 
 const update = (req, res) => {

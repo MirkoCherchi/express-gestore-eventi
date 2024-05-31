@@ -4,12 +4,19 @@ const path = require("path");
 const filePath = path.join(__dirname, "../db/events.json");
 
 class EventModel {
+  static lastId = 0;
+
   constructor(id, title, description, date, maxSeats) {
-    this.id = id;
+    this.id = id || EventModel.getNextId();
     this.title = title;
     this.description = description;
     this.date = date;
     this.maxSeats = maxSeats;
+  }
+
+  static getNextId() {
+    EventModel.lastId = (EventModel.lastId || 0) + 1;
+    return EventModel.lastId;
   }
 
   //   Otteniamo tutti gli eventi dal file JSON
@@ -32,6 +39,10 @@ class EventModel {
         if (err) {
           reject(err);
         } else {
+          // Se non ci sono eventi, reinizializza lastId a 0
+          if (events.length === 0) {
+            EventModel.lastId = 0;
+          }
           resolve();
         }
       });
